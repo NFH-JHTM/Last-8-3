@@ -63,32 +63,41 @@ h1, p {
     100% { transform: translateY(0); }
 }
 
-/* Cánh thiên thần */
+.wing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 50px;
+}
+
 .wing {
+    width: 100px;
     position: absolute;
-    width: 80px;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .left-wing {
-    left: -90px;
-    transform: scaleX(-1) translateY(-50%);
+    left: -110px;
+    transform: scaleX(-1);
 }
 
 .right-wing {
-    right: -90px;
+    right: -110px;
 }
 
-#passwordPanel input {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    outline: none;
-    margin-bottom: 10px;
-    font-family: 'Itim', cursive;
+#passwordPanel {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(255, 117, 140, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: floating 3s infinite ease-in-out;
 }
 
 #submitPassword {
