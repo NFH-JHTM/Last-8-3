@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
 body {
-    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: white;
     text-align: center;
     font-family: 'Itim', cursive;
