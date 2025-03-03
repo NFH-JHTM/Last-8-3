@@ -150,13 +150,41 @@ p {
 #errorMessage.show {
     opacity: 1;
 }
-.shake {
-    animation: shake 0.3s ease-in-out;
-}
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
+@media (max-width: 768px) {
+    h1 {
+        font-size: 6vw;
+    }
+
+    p {
+        font-size: 4vw;
+    }
+
+    #passwordPanel {
+        padding: 4vw 5vw;
+        border-radius: 40px;
+    }
+
+    .left-wing {
+        width: 25vw;
+        left: -20vw;
+    }
+
+    .right-wing {
+        width: 18vw;
+        right: -18vw;
+    }
+
+    #passwordPanel input {
+        font-size: 3vw;
+        width: 20vw;
+    }
+
+    #submitPassword {
+        font-size: 3vw;
+    }
+
+    #errorMessage {
+        font-size: 2.5vw;
+    }
 }
