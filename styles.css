@@ -27,10 +27,13 @@ canvas {
     height: 100vh;
 }
 
-h1, p {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 2s ease, transform 2s ease;
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 22px;
 }
 
 .fade-in {
@@ -39,53 +42,9 @@ h1, p {
 }
 
 .delay {
-    transition-delay: 1s;
+    transition-delay: 2s;
 }
 
-#passwordPanel {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(255, 117, 140, 0.4);
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    animation: floating 3s infinite ease-in-out;
-}
-
-/* Hiệu ứng lơ lửng */
-@keyframes floating {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-.wing-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: 50px;
-}
-
-.wing {
-    width: 100px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.left-wing {
-    left: -110px;
-    transform: translateY(-50%); /* Xóa lật ngược */
-}
-
-.right-wing {
-    right: -110px;
-}
 
 #passwordPanel {
     background: rgba(255, 255, 255, 0.25);
@@ -101,7 +60,32 @@ h1, p {
     border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Bo góc input và button */
+
+@keyframes floating {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+
+.wing {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.left-wing {
+    width: 150px;  /* Gấp 1.5 lần so với cánh phải */
+    left: -120px;
+}
+
+.right-wing {
+    width: 100px;
+    right: -110px;
+}
+
+
 #passwordPanel input {
     padding: 12px;
     font-size: 18px;
@@ -133,6 +117,7 @@ h1, p {
     transform: scale(1.05);
 }
 
+
 #errorMessage {
     color: #ff4d4d;
     font-size: 14px;
@@ -144,4 +129,16 @@ h1, p {
 
 #errorMessage.show {
     opacity: 1;
+}
+
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
 }
