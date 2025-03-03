@@ -2,17 +2,12 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
         document.querySelector("h1").classList.add("fade-in");
         document.querySelector("p").classList.add("fade-in");
-    }, 500);
-});
 
-// Button to trigger flower animation
-document.getElementById("triggerAnimation").addEventListener("click", function() {
-    let flower = document.createElement("div");
-    flower.classList.add("flower");
-    document.body.appendChild(flower);
-    setTimeout(() => {
-        flower.style.opacity = "0";
-    }, 2000);
+        // Hiện Password Panel sau 3s
+        setTimeout(() => {
+            document.getElementById("passwordPanel").classList.add("show");
+        }, 3000);
+    }, 500);
 });
 
 // Floating Hearts Background Animation
