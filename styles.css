@@ -1,11 +1,10 @@
-/* Import font Itim (dễ thương + hỗ trợ tiếng Việt) */
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
 body {
     background: linear-gradient(120deg, #ff9a9e, #fad0c4);
     color: white;
     text-align: center;
-    font-family: 'Itim', cursive;  /* Thay font chữ */
+    font-family: 'Itim', cursive;
     overflow: hidden;
     margin: 0;
     padding: 0;
@@ -40,9 +39,8 @@ h1, p {
 }
 
 .delay {
-    transition-delay: 2s;
+    transition-delay: 1s;
 }
-
 
 #passwordPanel {
     background: rgba(255, 255, 255, 0.2);
@@ -58,30 +56,29 @@ h1, p {
     animation: floating 3s infinite ease-in-out;
 }
 
-
+/* Hiệu ứng lơ lửng */
 @keyframes floating {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
 }
 
-
+/* Cánh thiên thần */
 .wing {
     position: absolute;
-    width: 60px; /
+    width: 80px;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .left-wing {
-    left: -70px;
-    transform: scaleX(-1) translateY(-50%); /* Lật ngược cánh trái */
+    left: -90px;
+    transform: scaleX(-1) translateY(-50%);
 }
 
 .right-wing {
-    right: -70px;
+    right: -90px;
 }
-
 
 #passwordPanel input {
     padding: 10px;
@@ -112,7 +109,6 @@ h1, p {
     background: #ff507f;
     transform: scale(1.05);
 }
-
 
 #errorMessage {
     color: #ff4d4d;
