@@ -1,52 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
-
-body {
-    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-    color: white;
-    text-align: center;
-    font-family: 'Itim', cursive;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-}
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-}
-
-.container {
+.wing-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    position: relative;
+    margin-top: 50px;
 }
 
-/* Chỉnh kích thước chữ tiêu đề */
-h1 {
-    font-size: 40px;
-    font-weight: bold;
+.wing {
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-p {
-    font-size: 22px;
+.left-wing {
+    left: -110px;
+    transform: translateY(-50%); /* Xóa lật ngược */
 }
 
-.fade-in {
-    opacity: 1;
-    transform: translateY(0);
+.right-wing {
+    right: -110px;
 }
 
-.delay {
-    transition-delay: 2s;
-}
-
-/* Panel mật khẩu bo góc mềm mại */
 #passwordPanel {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
@@ -59,29 +34,6 @@ p {
     position: relative;
     animation: floating 3s infinite ease-in-out;
     border: 2px solid rgba(255, 255, 255, 0.4);
-}
-
-/* Hiệu ứng lơ lửng */
-@keyframes floating {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-/* Cánh thiên thần */
-.wing {
-    width: 100px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.left-wing {
-    left: -110px;
-}
-
-.right-wing {
-    right: -110px;
 }
 
 /* Bo góc input và button */
@@ -116,7 +68,6 @@ p {
     transform: scale(1.05);
 }
 
-/* Hiệu ứng lỗi và shake */
 #errorMessage {
     color: #ff4d4d;
     font-size: 14px;
@@ -129,8 +80,6 @@ p {
 #errorMessage.show {
     opacity: 1;
 }
-
-/* Hiệu ứng rung khi nhập sai */
 .shake {
     animation: shake 0.3s ease-in-out;
 }
