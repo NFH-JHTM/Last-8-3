@@ -80,7 +80,7 @@ h1, p {
 
 .left-wing {
     left: -110px;
-    transform: scaleX(-1);
+    transform: translateY(-50%); /* Xóa lật ngược */
 }
 
 .right-wing {
@@ -88,30 +88,44 @@ h1, p {
 }
 
 #passwordPanel {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(255, 117, 140, 0.4);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    padding: 30px 40px;
+    border-radius: 50px;
+    box-shadow: 0px 10px 25px rgba(255, 117, 140, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     animation: floating 3s infinite ease-in-out;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Bo góc input và button */
+#passwordPanel input {
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    text-align: center;
+    outline: none;
+    font-family: 'Itim', cursive;
+    width: 200px;
 }
 
 #submitPassword {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 18px;
     font-weight: bold;
     color: white;
     background: #ff758c;
     border: none;
-    border-radius: 50px;
+    border-radius: 30px;
     cursor: pointer;
     transition: 0.4s;
     box-shadow: 0px 5px 15px rgba(255, 117, 140, 0.4);
     font-family: 'Itim', cursive;
+    margin-top: 10px;
 }
 
 #submitPassword:hover {
