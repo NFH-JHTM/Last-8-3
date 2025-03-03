@@ -10,6 +10,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500);
 });
 
+// Kiểm tra mật khẩu và chuyển hướng
+document.getElementById("submitPassword").addEventListener("click", function() {
+    const correctPassword = "123456";  // 🔑 Đổi password tại đây
+    const inputPassword = document.getElementById("passwordInput").value;
+    const errorMessage = document.getElementById("errorMessage");
+
+    if (inputPassword === correctPassword) {
+        window.location.href = "https://example.com"; // 🔗 Đổi link tại đây
+    } else {
+        errorMessage.classList.add("show");
+        document.getElementById("passwordPanel").classList.add("shake");
+
+        // Ẩn lỗi sau 2 giây
+        setTimeout(() => {
+            errorMessage.classList.remove("show");
+        }, 2000);
+
+        // Dừng hiệu ứng rung sau 0.3s
+        setTimeout(() => {
+            document.getElementById("passwordPanel").classList.remove("shake");
+        }, 300);
+    }
+});
+
 // Floating Hearts Background Animation
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
