@@ -88,15 +88,18 @@ particlesCanvas.width = window.innerWidth;
 particlesCanvas.height = window.innerHeight;
 
 let particles = [];
+const maxParticles = 50; 
 
 function createParticle() {
-    let x = Math.random() * particlesCanvas.width;
-    let y = Math.random() * particlesCanvas.height;
-    let size = Math.random() * 40 + 10;
-    let speed = Math.random() * 1.5 + 0.2;
-    let opacity = Math.random() * 0.5 + 0.3;
+    if (particles.length < maxParticles) { 
+        let x = Math.random() * particlesCanvas.width;
+        let y = Math.random() * particlesCanvas.height;
+        let size = Math.random() * 40 + 10;
+        let speed = Math.random() * 1.5 + 0.2;
+        let opacity = Math.random() * 0.5 + 0.3;
 
-    particles.push({ x, y, size, speed, opacity });
+        particles.push({ x, y, size, speed, opacity });
+    }
 }
 
 function drawParticles() {
@@ -105,28 +108,29 @@ function drawParticles() {
     for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
         let img = new Image();
-        img.src = "images/particles.png";
+        img.src = "particles.png";
 
         ctxParticles.globalAlpha = p.opacity;
         ctxParticles.drawImage(img, p.x, p.y, p.size, p.size);
         p.y -= p.speed;
 
         if (p.y < -p.size) {
-            p.y = particlesCanvas.height;
-            p.x = Math.random() * particlesCanvas.width;
+            particles.splice(i, 1); 
         }
     }
 
     requestAnimationFrame(drawParticles);
 }
 
-setInterval(createParticle, 300);
+
+setInterval(createParticle, 500);
 drawParticles();
 
 window.addEventListener("resize", () => {
     particlesCanvas.width = window.innerWidth;
     particlesCanvas.height = window.innerHeight;
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const title = document.querySelector("h1"); 
