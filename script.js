@@ -43,6 +43,7 @@ canvas.height = window.innerHeight;
 
 let hearts = [];
 let heartInterval;
+let heartAnimationFrame;
 
 function createHeart() {
     let x = Math.random() * canvas.width;
@@ -70,19 +71,23 @@ function animateHearts() {
     }
 
     hearts = hearts.filter(h => h.y > -10);
-    requestAnimationFrame(animateHearts);
+    heartAnimationFrame = requestAnimationFrame(animateHearts);
 }
 
 function startHeartAnimation() {
     if (!heartInterval) {
         heartInterval = setInterval(createHeart, 200);
-        animateHearts();
+    }
+    if (!heartAnimationFrame) {
+        heartAnimationFrame = requestAnimationFrame(animateHearts);
     }
 }
 
 function stopHeartAnimation() {
     clearInterval(heartInterval);
     heartInterval = null;
+    cancelAnimationFrame(heartAnimationFrame);
+    heartAnimationFrame = null;
 }
 
 // 🎆 Particle Animation 🎆
@@ -135,7 +140,7 @@ function animateParticles() {
 
 function startParticleAnimation() {
     if (!particleAnimationFrame) {
-        animateParticles();
+        particleAnimationFrame = requestAnimationFrame(animateParticles);
     }
 }
 
@@ -150,8 +155,10 @@ document.addEventListener("visibilitychange", function() {
         stopHeartAnimation();
         stopParticleAnimation();
     } else {
-        startHeartAnimation();
-        startParticleAnimation();
+        setTimeout(() => { // ⏳ Delay nhỏ để tránh giật lag
+            startHeartAnimation();
+            startParticleAnimation();
+        }, 200);
     }
 });
 
