@@ -88,48 +88,51 @@ particlesCanvas.width = window.innerWidth;
 particlesCanvas.height = window.innerHeight;
 
 let particles = [];
-const maxParticles = 50; 
+const maxParticles = 20; 
+const image = new Image();
+image.src = "images/particles.png"; 
 
-function createParticle() {
-    if (particles.length < maxParticles) { 
-        let x = Math.random() * particlesCanvas.width;
-        let y = Math.random() * particlesCanvas.height;
-        let size = Math.random() * 40 + 10;
-        let speed = Math.random() * 1.5 + 0.2;
-        let opacity = Math.random() * 0.5 + 0.3;
 
-        particles.push({ x, y, size, speed, opacity });
-    }
+for (let i = 0; i < maxParticles; i++) {
+    particles.push({
+        x: Math.random() * particlesCanvas.width,
+        y: Math.random() * particlesCanvas.height,
+        size: Math.random() * 30 + 10,
+        speed: Math.random() * 0.5 + 0.2, n
+        opacity: Math.random() * 0.7 + 0.3
+    });
 }
 
-function drawParticles() {
+
+function animateParticles() {
     ctxParticles.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-    
+
     for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
-        let img = new Image();
-        img.src = "particles.png";
 
         ctxParticles.globalAlpha = p.opacity;
-        ctxParticles.drawImage(img, p.x, p.y, p.size, p.size);
+        ctxParticles.drawImage(image, p.x, p.y, p.size, p.size);
+        
         p.y -= p.speed;
 
+        
         if (p.y < -p.size) {
-            particles.splice(i, 1); 
+            p.y = particlesCanvas.height;
+            p.x = Math.random() * particlesCanvas.width;
         }
     }
 
-    requestAnimationFrame(drawParticles);
+    requestAnimationFrame(animateParticles);
 }
 
+animateParticles();
 
-setInterval(createParticle, 500);
-drawParticles();
 
 window.addEventListener("resize", () => {
     particlesCanvas.width = window.innerWidth;
     particlesCanvas.height = window.innerHeight;
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
