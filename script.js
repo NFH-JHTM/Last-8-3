@@ -88,21 +88,22 @@ particlesCanvas.width = window.innerWidth;
 particlesCanvas.height = window.innerHeight;
 
 let particles = [];
-const maxParticles = 20; 
+const maxParticles = 20;
 const image = new Image();
 image.src = "images/particles.png"; 
 
-
-for (let i = 0; i < maxParticles; i++) {
-    particles.push({
-        x: Math.random() * particlesCanvas.width,
-        y: Math.random() * particlesCanvas.height,
-        size: Math.random() * 30 + 10,
-        speed: Math.random() * 0.5 + 0.2, n
-        opacity: Math.random() * 0.7 + 0.3
-    });
-}
-
+image.onload = function () { 
+    for (let i = 0; i < maxParticles; i++) {
+        particles.push({
+            x: Math.random() * particlesCanvas.width,
+            y: Math.random() * particlesCanvas.height,
+            size: Math.random() * 30 + 10,
+            speed: Math.random() * 0.5 + 0.2,
+            opacity: Math.random() * 0.7 + 0.3
+        });
+    }
+    animateParticles(); 
+};
 
 function animateParticles() {
     ctxParticles.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
@@ -112,10 +113,9 @@ function animateParticles() {
 
         ctxParticles.globalAlpha = p.opacity;
         ctxParticles.drawImage(image, p.x, p.y, p.size, p.size);
-        
+
         p.y -= p.speed;
 
-        
         if (p.y < -p.size) {
             p.y = particlesCanvas.height;
             p.x = Math.random() * particlesCanvas.width;
@@ -125,13 +125,11 @@ function animateParticles() {
     requestAnimationFrame(animateParticles);
 }
 
-animateParticles();
-
-
 window.addEventListener("resize", () => {
     particlesCanvas.width = window.innerWidth;
     particlesCanvas.height = window.innerHeight;
 });
+
 
 
 
