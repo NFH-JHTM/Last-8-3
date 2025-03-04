@@ -128,26 +128,18 @@ window.addEventListener("resize", () => {
     particlesCanvas.height = window.innerHeight;
 });
 
-
-function typeWriterEffect(element, text, speed) {
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    element.innerHTML = "";
-    type();
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-    const title = document.querySelector("h1");
-    typeWriterEffect(title, "Chào Mừng Các Quý Cô", 100);
+    const title = document.querySelector("h1"); 
+    const subtitle = document.querySelector("p");  
 
     
-    const subtitle = document.querySelector("p");
-    subtitle.classList.add("fly-in");
+    title.classList.add("fade-in");
+    subtitle.classList.add("fade-in");
+
+    
+    setTimeout(() => {
+        title.classList.add("floating");
+        subtitle.classList.add("floating");
+    }, 2000); // 
 });
 
