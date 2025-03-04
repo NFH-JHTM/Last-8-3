@@ -9,6 +9,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500);
 });
 
+
+document.getElementById("submitPassword").addEventListener("click", function () {
+    const correctPassword = "12a8"; 
+    const inputPassword = document.getElementById("passwordInput").value;
+    const errorMessage = document.getElementById("errorMessage");
+    const passwordPanel = document.getElementById("passwordPanel");
+
+    if (inputPassword === correctPassword) {
+        window.location.href = "https://nfh-jhtm.github.io/Main/"; 
+    } else {
+        errorMessage.classList.add("show");
+        passwordPanel.classList.add("shake");
+
+        
+        setTimeout(() => {
+            errorMessage.classList.remove("show");
+        }, 2000);
+
+        
+        setTimeout(() => {
+            passwordPanel.classList.remove("shake");
+        }, 300);
+    }
+});
+
 // 🎀 Floating Lovely Hearts Animation 🎀
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
