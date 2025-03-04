@@ -79,3 +79,52 @@ window.addEventListener("resize", function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
+
+const particlesCanvas = document.createElement("canvas");
+document.body.appendChild(particlesCanvas);
+const ctxParticles = particlesCanvas.getContext("2d");
+
+particlesCanvas.width = window.innerWidth;
+particlesCanvas.height = window.innerHeight;
+
+let particles = [];
+
+function createParticle() {
+    let x = Math.random() * particlesCanvas.width;
+    let y = Math.random() * particlesCanvas.height;
+    let size = Math.random() * 40 + 10;
+    let speed = Math.random() * 1.5 + 0.2;
+    let opacity = Math.random() * 0.5 + 0.3;
+
+    particles.push({ x, y, size, speed, opacity });
+}
+
+function drawParticles() {
+    ctxParticles.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+    
+    for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        let img = new Image();
+        img.src = "images/particles.png";
+
+        ctxParticles.globalAlpha = p.opacity;
+        ctxParticles.drawImage(img, p.x, p.y, p.size, p.size);
+        p.y -= p.speed;
+
+        if (p.y < -p.size) {
+            p.y = particlesCanvas.height;
+            p.x = Math.random() * particlesCanvas.width;
+        }
+    }
+
+    requestAnimationFrame(drawParticles);
+}
+
+setInterval(createParticle, 300);
+drawParticles();
+
+window.addEventListener("resize", () => {
+    particlesCanvas.width = window.innerWidth;
+    particlesCanvas.height = window.innerHeight;
+});
+
