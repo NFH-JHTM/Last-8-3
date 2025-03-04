@@ -42,6 +42,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let hearts = [];
+let heartInterval;
 
 function createHeart() {
     let x = Math.random() * canvas.width;
@@ -72,14 +73,19 @@ function animateHearts() {
     requestAnimationFrame(animateHearts);
 }
 
-setInterval(createHeart, 200);
-animateHearts();
+function startHeartAnimation() {
+    if (!heartInterval) {
+        heartInterval = setInterval(createHeart, 200);
+        animateHearts();
+    }
+}
 
-window.addEventListener("resize", function() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
+function stopHeartAnimation() {
+    clearInterval(heartInterval);
+    heartInterval = null;
+}
 
+// 🎆 Particle Animation 🎆
 const particlesCanvas = document.createElement("canvas");
 document.body.appendChild(particlesCanvas);
 const ctxParticles = particlesCanvas.getContext("2d");
@@ -92,6 +98,8 @@ const maxParticles = 20;
 const image = new Image();
 image.src = "images/particles.png"; 
 
+let particleAnimationFrame;
+
 image.onload = function () { 
     for (let i = 0; i < maxParticles; i++) {
         particles.push({
@@ -102,7 +110,7 @@ image.onload = function () {
             opacity: Math.random() * 0.7 + 0.3
         });
     }
-    animateParticles(); 
+    startParticleAnimation();
 };
 
 function animateParticles() {
@@ -122,29 +130,39 @@ function animateParticles() {
         }
     }
 
-    requestAnimationFrame(animateParticles);
+    particleAnimationFrame = requestAnimationFrame(animateParticles);
 }
 
-window.addEventListener("resize", () => {
+function startParticleAnimation() {
+    if (!particleAnimationFrame) {
+        animateParticles();
+    }
+}
+
+function stopParticleAnimation() {
+    cancelAnimationFrame(particleAnimationFrame);
+    particleAnimationFrame = null;
+}
+
+// 📌 Xử lý khi chuyển tab
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+        stopHeartAnimation();
+        stopParticleAnimation();
+    } else {
+        startHeartAnimation();
+        startParticleAnimation();
+    }
+});
+
+// 🖥️ Xử lý khi thay đổi kích thước cửa sổ
+window.addEventListener("resize", function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     particlesCanvas.width = window.innerWidth;
     particlesCanvas.height = window.innerHeight;
 });
 
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const title = document.querySelector("h1"); 
-    const subtitle = document.querySelector("p");  
-
-    
-    title.classList.add("fade-in");
-    subtitle.classList.add("fade-in");
-
-    
-    setTimeout(() => {
-        title.classList.add("floating");
-        subtitle.classList.add("floating");
-    }, 2000); // 
-});
-
+// 🎬 Chạy animation ban đầu
+startHeartAnimation();
+startParticleAnimation();
